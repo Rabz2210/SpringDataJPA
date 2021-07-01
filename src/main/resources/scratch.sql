@@ -1,11 +1,17 @@
 #############################################Identity Generator#######################
+drop table employee;
 
 create table employee(
                          id int primary key AUTO_INCREMENT,
                          name varchar(100)
 );
 
+alter table employee add age int;
+alter table employee add salary int;
+alter table employee add Dept varchar(50);
+
 select * from employee;
+
 
 #####################################Table Generator : Bus: Id_gen is the generator########################
 #Id Generator Table
@@ -25,7 +31,6 @@ Select * from Bus;
 select * from id_gen;
 
 #########################################Custom Random Id Generator ##################################
-
 create table car(
                     id varchar(255) primary key ,
                     name varchar(255)

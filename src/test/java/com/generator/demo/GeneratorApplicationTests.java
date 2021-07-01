@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class GeneratorApplicationTests {
 
@@ -27,11 +29,37 @@ class GeneratorApplicationTests {
     void contextLoads() {
         employee ob = new employee();
         ob.setName("Rabbani");
+        ob.setAge(27);
+        ob.setSalary(10000);
+        ob.setDept("Chemistry");
         empRepo.save(ob);
         employee ob1 = new employee();
         ob1.setName("Arman");
+        ob1.setAge(24);
+        ob1.setSalary(15000);
+        ob1.setDept("Biology");
         empRepo.save(ob1);
+        employee ob2 = new employee();
+        ob2.setName("Rohan");
+        ob2.setAge(32);
+        ob2.setSalary(20000);
+        ob2.setDept("Mathematics");
+        empRepo.save(ob2);
+        employee ob3 = new employee();
+        ob3.setName("Sohan");
+        ob3.setAge(21);
+        ob3.setSalary(5000);
+        ob3.setDept("Admin");
+        empRepo.save(ob3);
+        employee ob4 = new employee();
+        ob4.setName("Razia");
+        ob4.setAge(29);
+        ob4.setSalary(17000);
+        ob4.setDept("Physics");
+        empRepo.save(ob4);
+
     }
+
 
     @Test
     void testSaveBus(){
@@ -51,6 +79,39 @@ class GeneratorApplicationTests {
         ob1.setName("Eicher");
         carRepo.save(ob);
         carRepo.save(ob1);
+    }
+
+    @Test
+    public void testFindByAgebetween(){
+        List<employee> res = empRepo.findByAgeBetween(20,25);
+        for(employee each:res){
+            System.out.println(each.getName());
+        }
+    }
+
+    @Test
+    public void testFindBySalaryGreaterThan(){
+        List<employee>res = empRepo.findBySalaryGreaterThan(17000);
+        for(employee each:res){
+            System.out.println(each.getName()+": "+each.getDept());
+        }
+    }
+
+    @Test
+    public void testFindbyAgeAndSalary(){
+        List<employee> res = empRepo.findByAgeGreaterThanAndSalaryIsGreaterThan(25,10000);
+        for(employee each:res){
+            System.out.println(each.getName()+" :"+each.getAge());
+        }
+    }
+
+
+    @Test
+    public void testFindByContains(){
+        List<employee> res = empRepo.findByDeptLike("Mathematics");
+        for(employee each:res){
+            System.out.println(each.getName()+" :"+each.getName());
+        }
     }
 
 }

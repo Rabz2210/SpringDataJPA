@@ -11,6 +11,10 @@ public class employee {
     )
     Long Id;
     String name;
+    int age;
+    int salary;
+    @Column(name="dept")
+    String Dept;
 
     public Long getId() {
         return Id;
@@ -26,5 +30,29 @@ public class employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public String getDept() {
+        return Dept;
+    }
+
+    public void setDept(String dept) {
+        Dept = dept;
     }
 }
