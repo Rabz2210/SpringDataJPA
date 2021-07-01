@@ -9,7 +9,11 @@ import com.generator.demo.repo.EmployeeRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @SpringBootTest
@@ -106,12 +110,40 @@ class GeneratorApplicationTests {
     }
 
 
+//    @Test
+//    public void testFindByContains(){
+//        List<employee> res = empRepo.findByDeptLike("Mathematics");
+//        for(employee each:res){
+//            System.out.println(each.getName()+" :"+each.getName());
+//        }
+//    }
+
+    // Paging
     @Test
-    public void testFindByContains(){
-        List<employee> res = empRepo.findByDeptLike("Mathematics");
-        for(employee each:res){
-            System.out.println(each.getName()+" :"+each.getName());
+    public void testPaginatedResponse(){
+        PageRequest pageRequest = PageRequest.of(0,2);
+          Page<employee>result =  empRepo.findAll(pageRequest);
+          for(employee each:result){
+              System.out.println(each.getName()+" :"+each.getAge());
+          }
+
+    }
+
+    @Test
+    public void testSorting(){
+        List<employee> result = (List<employee>) empRepo.findAll(Sort.by(Sort.Direction.DESC,"salary"));
+        for(employee each:result){
+            System.out.println(each.getSalary());
         }
     }
 
+    @Test
+    public void testFindAllPagingAndSorting(){
+        PageRequest request = PageRequest.of(0,3,Sort.by(Sort.Direction.DESC,"salary"));
+        Page<employee> res = empRepo.findAll(request);
+        for(employee each:res){
+            System.out.println(each.getName()+" :"+each.getSalary());
+        }
+
+    }
 }

@@ -14,7 +14,7 @@ public class employee {
     int age;
     int salary;
     @Column(name="dept")
-    String Dept;
+    String dept;
 
     public Long getId() {
         return Id;
@@ -49,10 +49,10 @@ public class employee {
     }
 
     public String getDept() {
-        return Dept;
+        return dept;
     }
 
     public void setDept(String dept) {
-        Dept = dept;
+        this.dept = dept;
     }
 }
